@@ -100,7 +100,6 @@ with open("data/dia4_lista2.txt", "r") as fichero:
         matrix.append(matrix_line) 
     
     diagonals = diagonal_to_string(matrix)
-    print(diagonals)
     for line in diagonals: 
         matches += line.count("XMAS")
         matches += line.count("SAMX")
