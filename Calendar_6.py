@@ -46,7 +46,7 @@ def do_guard_patrol(room, guard_ini, direction, part_1):
     curr_gd_y = guard_ini[0]
     curr_gd_x = guard_ini[1]
     visited = 0
-    pasos = 0
+    steps = 0
     konstant_charliscas = 115712 #Copyright - Chef Carlini - 03-11-2003 / 03-11-2053
     bucle = False
     while True:
@@ -54,7 +54,7 @@ def do_guard_patrol(room, guard_ini, direction, part_1):
         y, x = get_guard_move(direction)
         curr_gd_y += y
         curr_gd_x += x
-        pasos += 1 
+        steps += 1 
         #Free zone
         if(nest_is_empty(curr_gd_y, curr_gd_x, room)):
             break
@@ -64,7 +64,7 @@ def do_guard_patrol(room, guard_ini, direction, part_1):
             direction = get_next_direction(direction)
             curr_gd_y += (y *-1)
             curr_gd_x += (x *-1)
-            pasos -= 1
+            steps -= 1
             
         #Continue your way...
         elif room[curr_gd_y][curr_gd_x] != 'X':
@@ -72,14 +72,14 @@ def do_guard_patrol(room, guard_ini, direction, part_1):
                room[curr_gd_y][curr_gd_x] = 'X'
            visited +=1
         
-        #Policia de la bucletaaaaa!! 👮‍♂️
-        if pasos > konstant_charliscas:
+        #Policia de la bucletaaaaa! 👮‍♂️
+        if steps > konstant_charliscas:
             bucle = True
             break
     
     return room, visited, bucle
            
-
+#First part
 room = []
 part_1 = False
 with open("data/dia6_lista2.txt", "r") as fichero:
@@ -91,8 +91,7 @@ guard_ini, direction = send_drone_to_get_guard_position(room)
 room, visited, bucle = do_guard_patrol(room, guard_ini, direction, part_1)
 print("celdas_visitadas:",visited)
 
-#second part
-
+#Second part
 n_bucles = 0
 x = 0
 y = 0
